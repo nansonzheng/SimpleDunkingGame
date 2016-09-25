@@ -6,6 +6,7 @@ public class playerBehaviour : MonoBehaviour {
 	//Our Pushing Force On the Player
 	public float thrustHorizontal=10;
 	public float thrustVertical=100;
+	public float torque = 5;
 
 	public bool grounded=false;
 	public float groundRadius = 0.2f;
@@ -43,9 +44,9 @@ public class playerBehaviour : MonoBehaviour {
 		//Off the Ground Control Schemes
 		else {
 			//Horizontal Movement & Torque
-			horizontal = Input.GetAxis("horizontalChar1") * thrustHorizontal;
+			horizontal = Input.GetAxis("horizontalChar1") * torque;
 
-			self.AddForce (new Vector2(horizontal, 0));
+			self.AddTorque (-1*horizontal);
 		}
 	}
 

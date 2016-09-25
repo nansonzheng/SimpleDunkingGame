@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 72022095}
   - 212: {fileID: 72022096}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: back arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,8 @@ GameObject:
   - 212: {fileID: 281087506}
   - 50: {fileID: 281087508}
   - 61: {fileID: 281087509}
-  m_Layer: 0
+  - 114: {fileID: 281087510}
+  m_Layer: 8
   m_Name: Guy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,10 +211,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 281087505}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.69, z: 0}
+  m_LocalPosition: {x: 0, y: 1.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1730733697}
   - {fileID: 409723224}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -248,6 +250,25 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 1.44, y: 2.56}
+--- !u!114 &281087510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281087505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41532ab309ac53e49b7a9de6792fc6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustHorizontal: 10
+  thrustVertical: 100
+  grounded: 1
+  groundRadius: 0.2
+  groundCheck: {fileID: 1730733697}
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1 &409723223
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,7 +282,7 @@ GameObject:
   - 50: {fileID: 409723228}
   - 233: {fileID: 409723227}
   - 61: {fileID: 409723225}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: front arm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +302,7 @@ Transform:
   m_Children:
   - {fileID: 72022095}
   m_Father: {fileID: 281087507}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!61 &409723225
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -343,7 +364,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0.06}
-  m_ConnectedAnchor: {x: -0.005229346, y: 0.39977163}
+  m_ConnectedAnchor: {x: -0.005229346, y: 0.3997718}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -360,11 +381,11 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 409723223}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -825,7 +846,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1730733696}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.65, z: 0}
+  m_LocalPosition: {x: 0, y: -1.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
