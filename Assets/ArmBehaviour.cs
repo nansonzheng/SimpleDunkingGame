@@ -5,7 +5,6 @@ public class ArmBehaviour : MonoBehaviour {
 
     private readonly string ballname = "Ball";
     private KeyCode pickupbutton = KeyCode.Mouse0;
-    private KeyCode jumpbutton = KeyCode.Space;
     public float shootForce = 6;
 
     private Vector3 mousePos;
