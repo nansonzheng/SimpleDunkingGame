@@ -101,7 +101,7 @@ GameObject:
   - 212: {fileID: 72022096}
   m_Layer: 8
   m_Name: back arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -279,12 +279,10 @@ GameObject:
   - 4: {fileID: 409723224}
   - 212: {fileID: 409723226}
   - 114: {fileID: 409723229}
-  - 50: {fileID: 409723228}
-  - 233: {fileID: 409723227}
   - 61: {fileID: 409723225}
   m_Layer: 8
   m_Name: front arm
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,46 +348,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!233 &409723227
-HingeJoint2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 409723223}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 281087508}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0.06}
-  m_ConnectedAnchor: {x: -0.005229346, y: 0.3997718}
-  m_UseMotor: 0
-  m_Motor:
-    m_MotorSpeed: 0
-    m_MaximumMotorForce: 10000
-  m_UseLimits: 0
-  m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
---- !u!50 &409723228
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 409723223}
-  m_UseAutoMass: 0
-  m_Mass: 0.0001
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &409723229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a24cfaffb898ce04fa5d33b06bdfc813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootForce: 12
 --- !u!1 &613827764
 GameObject:
   m_ObjectHideFlags: 0
