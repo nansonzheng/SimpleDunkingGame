@@ -5,6 +5,7 @@ public class ArmBehaviour : MonoBehaviour {
 
     private readonly string ballname = "Ball";
     private KeyCode pickupbutton = KeyCode.Mouse0;
+    private KeyCode dropbutton = KeyCode.Mouse1;
     public float shootForce = 6;
 
     private Vector3 mousePos;
@@ -36,9 +37,10 @@ public class ArmBehaviour : MonoBehaviour {
         angle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
 
-        if (Input.GetKeyDown(pickupbutton))
+        
+        if (ball != null)
         {
-            if (ball != null)
+            if (Input.GetKeyDown(pickupbutton))
             {
                 if (pickedup)
                 {
@@ -46,7 +48,7 @@ public class ArmBehaviour : MonoBehaviour {
                     ballRB.isKinematic = false;
                     pickedup = false;
                     // push ball
-                    ballRB.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad*angle)*shootForce, Mathf.Sin(Mathf.Deg2Rad * angle)*shootForce), ForceMode2D.Impulse);
+                    ballRB.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle) * shootForce, Mathf.Sin(Mathf.Deg2Rad * angle) * shootForce), ForceMode2D.Impulse);
                 }
                 else {
                     ball.transform.parent = arm.transform;
@@ -54,6 +56,13 @@ public class ArmBehaviour : MonoBehaviour {
                     ballRB.isKinematic = true;
                     ball.transform.localPosition = new Vector3(2, 0, 0);
                     pickedup = true;
+                }
+            }
+            else if (Input.GetKeyDown(dropbutton)) {
+                if (pickedup) {
+                    ball.transform.parent = null;
+                    ballRB.isKinematic = false;
+                    pickedup = false;
                 }
             }
         }
