@@ -467,14 +467,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustHorizontal: 10
-  thrustVertical: 150
+  thrustVertical: 10
   torque: 2
   grounded: 1
+  doubleJump: 0
   groundRadius: 0.2
   groundCheck: {fileID: 1730733697}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 2049
+    m_Bits: 6144
 --- !u!1 &409723223
 GameObject:
   m_ObjectHideFlags: 0

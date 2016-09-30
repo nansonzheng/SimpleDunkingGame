@@ -9,6 +9,7 @@ public class playerBehaviour : MonoBehaviour {
 	public float torque = 5;
 
 	public bool grounded=false;
+	public bool doubleJump=false;
 	public float groundRadius = 0.2f;
 	public Transform groundCheck;
 	public LayerMask whatIsGround;
@@ -27,7 +28,7 @@ public class playerBehaviour : MonoBehaviour {
 		float vertical = 0;
 
 		//Update Grounded Check
-		checkGrounded();
+		//checkGrounded();
 
 		//On the Ground Control Schemes
 		if (grounded) {
@@ -35,11 +36,13 @@ public class playerBehaviour : MonoBehaviour {
 			horizontal = Input.GetAxis("horizontalChar1") * thrustHorizontal;
 
 			//Vertical Movement
-			if(Input.GetButton("verticalChar1") && grounded){
-				vertical = thrustVertical;
+			if(Input.GetButtonDown("verticalChar1")){
+					vertical = thrustVertical;
+					self.velocity = new Vector2(self.velocity.x, vertical);
+					grounded = false;
 			}
 
-			self.AddForce (new Vector2(horizontal, vertical));
+			self.AddForce (new Vector2(horizontal, 0));
 		} 
 
 		//Off the Ground Control Schemes
@@ -47,6 +50,13 @@ public class playerBehaviour : MonoBehaviour {
 			//Horizontal Movement & Torque
 			horizontalTorque = Input.GetAxis("horizontalChar1") * torque;
 			horizontal = Input.GetAxis("horizontalChar1") * thrustHorizontal;
+
+			//Vertical Movement
+			if(Input.GetButtonDown("verticalChar1") && doubleJump){
+				vertical = thrustVertical;
+				self.velocity = new Vector2(self.velocity.x, vertical);
+				doubleJump = false;
+			}
 
 			self.AddTorque (-1*horizontalTorque);
 			self.AddForce (new Vector2(horizontal, 0));
@@ -56,4 +66,18 @@ public class playerBehaviour : MonoBehaviour {
 	void checkGrounded(){
 		grounded = Physics2D.OverlapCircle (groundCheck.position, groundRadius, whatIsGround);
 	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		if (((1<<other.gameObject.layer) & whatIsGround) != 0) {
+			grounded = true;
+			doubleJump = true;
+		}
+	}
+
+	/*
+	void OnCollisionExit2D(Collision2D other) {
+		if (((1<<other.gameObject.layer) & whatIsGround) != 0) {
+			grounded = false;
+		}
+	}*/
 }
