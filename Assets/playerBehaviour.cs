@@ -22,8 +22,9 @@ public class playerBehaviour : MonoBehaviour {
 
 	//Called Every Fixed Interval
 	void FixedUpdate(){
-		float horizontal=0;
-		float vertical=0;
+		float horizontal = 0;
+		float horizontalTorque = 0;
+		float vertical = 0;
 
 		//Update Grounded Check
 		checkGrounded();
@@ -44,9 +45,11 @@ public class playerBehaviour : MonoBehaviour {
 		//Off the Ground Control Schemes
 		else {
 			//Horizontal Movement & Torque
-			horizontal = Input.GetAxis("horizontalChar1") * torque;
+			horizontalTorque = Input.GetAxis("horizontalChar1") * torque;
+			horizontal = Input.GetAxis("horizontalChar1") * thrustHorizontal;
 
-			self.AddTorque (-1*horizontal);
+			self.AddTorque (-1*horizontalTorque);
+			self.AddForce (new Vector2(horizontal, 0));
 		}
 	}
 
