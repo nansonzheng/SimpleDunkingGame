@@ -52,7 +52,7 @@ public class ArmBehaviour : MonoBehaviour {
                 }
                 else {
                     ball.transform.parent = arm.transform;
-					ball.GetComponent<Collider2D>().isTrigger = true;
+					ball.gameObject.layer = gameObject.layer;
                     ballRB.velocity = Vector2.zero;
                     ballRB.isKinematic = true;
                     ball.transform.localPosition = new Vector3(2, 0, 0);
@@ -78,7 +78,7 @@ public class ArmBehaviour : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.Equals(ball)) {
-			ball.GetComponent<Collider2D>().isTrigger = false;
+			ball.gameObject.layer = LayerMask.NameToLayer ("Ball");
             ball = null;
         }
     }

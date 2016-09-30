@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692522, g: 0.49678677, b: 0.5750848, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692558, g: 0.49678743, b: 0.57508624, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -99,7 +99,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 72022095}
   - 212: {fileID: 72022096}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: back arm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -433,8 +433,8 @@ Rigidbody2D:
   m_GameObject: {fileID: 281087505}
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -467,14 +467,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrustHorizontal: 10
-  thrustVertical: 100
-  torque: 5
+  thrustVertical: 150
+  torque: 2
   grounded: 1
   groundRadius: 0.2
   groundCheck: {fileID: 1730733697}
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 2049
 --- !u!1 &409723223
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ GameObject:
   - 212: {fileID: 409723226}
   - 114: {fileID: 409723229}
   - 61: {fileID: 409723225}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: front arm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -833,7 +833,7 @@ GameObject:
   - 4: {fileID: 861178080}
   - 212: {fileID: 861178082}
   - 61: {fileID: 861178081}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -987,7 +987,7 @@ GameObject:
   - 50: {fileID: 1715332648}
   - 114: {fileID: 1715332652}
   - 82: {fileID: 1715332653}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
