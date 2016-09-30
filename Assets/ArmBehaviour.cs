@@ -7,13 +7,14 @@ public class ArmBehaviour : MonoBehaviour {
     private KeyCode pickupbutton = KeyCode.Mouse0;
     private KeyCode dropbutton = KeyCode.Mouse1;
     public float shootForce = 6;
+    public float dropForce = 0.5f;
 
     private Vector3 mousePos;
     private Vector3 objectPos;
     private float angle;
 
     private GameObject ball;
-    private Rigidbody2D ballRB;
+    private Rigidbody2D ballRB, bodyRB;
     private Collider2D arm;
     private bool pickedup;
 
@@ -24,6 +25,7 @@ public class ArmBehaviour : MonoBehaviour {
         ballRB = null;
         pickedup = false;
         mousePos = Input.mousePosition;
+        bodyRB = GetComponentInParent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -47,6 +49,9 @@ public class ArmBehaviour : MonoBehaviour {
                     ball.transform.parent = null;
                     ballRB.isKinematic = false;
                     pickedup = false;
+
+                    // uncomment line below if want relative velocity added in
+                    //ballRB.velocity = bodyRB.velocity;
                     // push ball
                     ballRB.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle) * shootForce, Mathf.Sin(Mathf.Deg2Rad * angle) * shootForce), ForceMode2D.Impulse);
                 }
@@ -64,6 +69,8 @@ public class ArmBehaviour : MonoBehaviour {
                     ball.transform.parent = null;
                     ballRB.isKinematic = false;
                     pickedup = false;
+                    // keep velocity of player
+                    ballRB.AddForce(new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle) * dropForce, Mathf.Sin(Mathf.Deg2Rad * angle) * dropForce), ForceMode2D.Impulse);
                 }
             }
         }
