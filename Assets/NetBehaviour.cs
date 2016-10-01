@@ -36,7 +36,7 @@ public class NetBehaviour : MonoBehaviour {
 
 
     void OnTriggerEnter2D(Collider2D other) {
-        if (other.name == ballname) {
+		if (other.name == ballname && other.transform.position.y - scoreline.transform.position.y >= 0) {
             scoreCue.Stop();
             johncena.Stop();
             Debug.Log("Scored!");
