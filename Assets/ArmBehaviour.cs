@@ -14,7 +14,7 @@ public class ArmBehaviour : MonoBehaviour {
     private float angle;
 
     private GameObject ball;
-    private Rigidbody2D ballRB, bodyRB;
+    private Rigidbody2D ballRB;
     private Collider2D arm;
     private bool pickedup;
 
@@ -25,8 +25,6 @@ public class ArmBehaviour : MonoBehaviour {
         ballRB = null;
         pickedup = false;
         mousePos = Input.mousePosition;
-        bodyRB = GetComponentInParent<Rigidbody2D>();
-
     }
 
     // Update is called once per frame
@@ -88,6 +86,8 @@ public class ArmBehaviour : MonoBehaviour {
         if (other.gameObject.Equals(ball)) {
 			ball.gameObject.layer = LayerMask.NameToLayer ("Ball");
             ball = null;
+            pickedup = false;
+            ballRB.isKinematic = false;
         }
     }
 }

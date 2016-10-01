@@ -5,25 +5,24 @@ using System.Collections;
 
 public class NetBehaviour : MonoBehaviour {
 
-    private AudioSource johncena;
-
 
     private readonly string ballname = "Ball";
-    private AudioSource scoreCue;
+    private AudioSource scoreCue, johncena, wombo;
     private int score;
     private Text scoreText;
     public int random;
     public int cooldown;
     private EdgeCollider2D scoreline;
-    private PolygonCollider2D net;
+    private Collider2D[] net;
 
 	// Use this for initialization
 	void Start () {
         scoreline = GetComponent<EdgeCollider2D>();
-        net = GetComponent<PolygonCollider2D>();
+        net = GetComponents<Collider2D>();
         scoreText = GameObject.Find("Canvas").GetComponentInChildren<Text>();
         scoreCue = GetComponent<AudioSource>();
         johncena = transform.Find("cena").GetComponent<AudioSource>();
+        wombo = transform.Find("wombo").GetComponent<AudioSource>();
         score = 0;
         cooldown = 2;
 
@@ -39,30 +38,41 @@ public class NetBehaviour : MonoBehaviour {
 		if (other.name == ballname && other.transform.position.y - scoreline.transform.position.y >= 0) {
             scoreCue.Stop();
             johncena.Stop();
-            Debug.Log("Scored!");
-            score += 1;
-            UpdateScore();
-            random = (int)Random.Range(0.0f, 10f);
-            if (random < 9)
-                scoreCue.Play();
-            else
-                johncena.Play();
+            wombo.Stop();
+            UpdateScore(other.transform);
 
-            // Disable colliders momentarily
-            net.enabled = false;
-            scoreline.enabled = false;
-            StartCoroutine(ReenableNetIn(cooldown));
+            // Play cue
+            random = (int)Random.Range(0.0f, 10f);
+            if (random == 9)
+                johncena.Play();
+            else if (random == 0)
+                wombo.Play();
+            else
+                scoreCue.Play();
+
         }
     }
 
     // Update text
-    void UpdateScore() {
+    void UpdateScore(Transform ball) {
+        Debug.Log("Scored!");
+        score += 1;
+        if (ball.parent != null) {
+            ball.parent = null;
+        }
         scoreText.text = "Score: " + score + "!!!";
+        // Disable colliders momentarily
+        foreach (Collider2D c in net) {
+            c.enabled = false;
+        }
+        StartCoroutine(ReenableNetIn(cooldown));
     }
 
     IEnumerator ReenableNetIn(int seconds) {
         yield return new WaitForSeconds(seconds);
-        net.enabled = true;
-        scoreline.enabled = true;
+        foreach (Collider2D c in net)
+        {
+            c.enabled = true;
+        }
     }
 }
