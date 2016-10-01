@@ -26,6 +26,7 @@ public class ArmBehaviour : MonoBehaviour {
         pickedup = false;
         mousePos = Input.mousePosition;
         bodyRB = GetComponentInParent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
